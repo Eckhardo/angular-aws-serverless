@@ -6,7 +6,7 @@ phases:
       - echo Deployment started on `date`
       - echo Syncing S3 Content
       # REPLACE yourwebsite.com WITH THE NAME OF YOUR S3 BUCKET THAT HOSTS YOUR APP'S STATIC WEBSITE
-      - aws s3 sync .app//dist/ s3://my-rusken-bucket
+      - aws s3 sync .app/dist/ s3://my-rusken-bucket
   build:
     commands:
       - echo Invalidating CloudFront Cache
