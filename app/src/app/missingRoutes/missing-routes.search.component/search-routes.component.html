@@ -1,0 +1,128 @@
+<p>Form value: {{ form.value | json }}</p>
+<p>Form status: {{ form.status | json }}</p>
+
+<form class="form-style-9 mdl-color-text--light-blue-900" style="background: #ecf4ff;"
+      [formGroup]="form"
+      novalidate (ngSubmit)="filterMissingRoutes()">
+  <div id="im-search-form" style="text-align: center;font-weight: bold;">
+    {{ title }}
+
+    <ng-template #noResult>
+      No results found.
+    </ng-template>
+    <div>
+
+    </div>
+
+    <mat-spinner [style.display]="showSpinner ? 'block' :'none'"></mat-spinner>
+  </div>
+
+  <!--  Rules -->
+  <div *ngIf="isCollapsed">
+    <div style="border-width: 2px; border-color: #337DA8; border-style: solid; padding:5px; margin: 5px; ">
+      <!--- Trade -->
+      <mat-form-field style="width: 150px; margin-left: 20px; margin-right: 20px;">
+        <input matInput #tradeMessage maxlength="5" placeholder="Trade" formControlName="trade"
+               [matAutocomplete]="trade">
+        <mat-hint align="start"> e.g. EANEU, EACCA</mat-hint>
+        <mat-hint align="end">{{tradeMessage.value.length}} / 5</mat-hint>
+
+        <mat-autocomplete #trade="matAutocomplete">
+          <mat-option *ngFor="let item of possibleTrades" [value]="item.trade_code"
+                      style="height: 30px; line-height: 20px; background-color: #ecf4ff;">
+            <span class="smallFont"> {{ item.trade_code }}</span>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <!--- Contract -->
+    </div>
+    <div style="border-width: 2px; border-color: #337DA8; border-style: solid; padding:5px; margin: 5px; ">
+      <div *ngIf=" searchSingleContract()">
+        <mat-form-field style="width: 150px; margin-left: 20px; margin-right: 20px;">
+          <input matInput placeholder="Agreement No" formControlName="contract" [matAutocomplete]="contract">
+          <mat-autocomplete #contract="matAutocomplete">
+            <mat-option *ngFor="let contract of possibleContracts" [value]="contract.no"
+                        style="height: 30px; line-height: 20px; background-color: #ecf4ff;">
+              <span class="smallFont"> {{ contract.no }}</span>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <div *ngIf="! searchSingleContract()">
+        <mat-form-field style="width: 150px; margin-left: 20px; margin-right: 20px;">
+          <input matInput formControlName="contractGroup" #message maxlength="5" placeholder="Agreement No Group"
+                 [matAutocomplete]="contractGroup">
+          <mat-hint align="start"> e.g. ANCC5, ANCC7</mat-hint>
+          <mat-hint align="end">{{message.value.length}} / 5</mat-hint>
+          <mat-autocomplete #contractGroup="matAutocomplete">
+            <mat-option *ngFor="let contractGroup of possibleContractGroups" [value]="contractGroup.no"
+                        style="height: 30px; line-height: 20px; background-color: #ecf4ff;">
+              <span class="smallFont"> {{ contractGroup.no }}</span>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <div style=" padding:5px; margin: 5px;">
+        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect " for="includeAll">
+          <input type="checkbox" id="includeAll" class="mdl-checkbox__input" formControlName="singleContractOnly">
+          <span class="mat-small">One Single Contract Only</span>
+        </label>
+      </div>
+    </div>
+
+    <div style="border-width: 2px; border-color: #337DA8; border-style: solid; padding:5px; margin: 5px; ">
+      <!--- Port of Loading -->
+      <div *ngIf="! byCountry()">
+
+        <mat-form-field style="width: 150px; margin-left: 20px; margin-right: 20px;">
+          <input matInput #polMessage maxlength="3" placeholder="Port of Loading" formControlName="portOfLoading"
+                 [matAutocomplete]="autoFrom">
+          <mat-hint align="start">starts with: e.g. CNC</mat-hint>
+          <mat-hint align="end">{{polMessage.value.length}} / 3</mat-hint>
+
+          <mat-autocomplete #autoFrom="matAutocomplete">
+            <mat-option *ngFor="let item of possiblePOLs" [value]="item.location_code"
+                        style="height: 30px; line-height: 20px; background-color: #ecf4ff;">
+              <span class="smallFont"> {{ item.location_code }}</span>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <!--- Port of Destination -->
+      <div *ngIf=" byCountry()">
+
+        <mat-form-field style="width: 100px; margin-left: 20px; margin-right: 20px;">
+          <input matInput placeholder="POL-Country" formControlName="countryCode" [matAutocomplete]="autoCountry">
+          <mat-hint align="start">e.g. DE, CN</mat-hint>
+
+          <mat-autocomplete #autoCountry="matAutocomplete">
+            <mat-option *ngFor="let country of possibleCountries" [value]="country.country_code"
+                        style="height: 30px; line-height: 20px;">
+              <span class="smallFont"> {{ country.country_code }}</span>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <div style=" padding:5px; margin: 5px;">
+        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect " for="byCountryCode">
+          <input type="checkbox" id="byCountryCode" class="mdl-checkbox__input" formControlName="byCountryCode">
+          <span class="mat-small">POL by Country Code</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+
+  <div style="border-width: 2px; border-color: #337DA8; border-style: solid;  margin: 5px; padding: 10px; ">
+    <button type="button" mat-raised-button (click)="toggle()">{{button_name}}</button>
+    <button type="button" mat-raised-button (click)="reset()">Reset</button>
+    <button mat-raised-button type=submit [disabled]="isInvalid()">
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+</form>
+
+<div *ngIf="routes.length > 0; else noResult">
+  <app-result-routes [routings]="routes"></app-result-routes>
+</div>
+

@@ -1,0 +1,75 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+
+  <mat-table #table [dataSource]="dataSource" matSort matSort matSortDirection="asc">
+    <!--    displayedColumns = ['trade', 'pol', 'pod', 'ts1', 'ts2', 'ts3', '_contractno', '_productno', '_reasoncode'];
+    -->
+    <!-- Trade Column -->
+    <ng-container matColumnDef="trade">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>trade</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.trade}}</mat-cell>
+    </ng-container>
+
+    <!-- POL Column -->
+    <ng-container matColumnDef="pol">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>POL</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.pol}}</mat-cell>
+    </ng-container>
+
+    <!-- POD Column -->
+    <ng-container matColumnDef="pod">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>POD</mat-header-cell>
+      <mat-cell *matCellDef="let element "> {{element.pod}}</mat-cell>
+    </ng-container>
+    <!-- ts1 Column -->
+    <ng-container matColumnDef="ts1">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>T/S 1</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.ts1}}</mat-cell>
+    </ng-container>
+    <!-- ts2 Column -->
+    <ng-container matColumnDef="ts2">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>T/S 2</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.ts2}}</mat-cell>
+    </ng-container>
+    <!-- ts3 Column -->
+    <ng-container matColumnDef="ts3">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>T/S 3</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.ts3}}</mat-cell>
+    </ng-container>
+
+    <!-- Contract Column -->
+    <ng-container matColumnDef="contractno">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Contract</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.contractno }}</mat-cell>
+    </ng-container>
+
+    <!-- Product no Column -->
+    <ng-container matColumnDef="productno">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Product No</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.productno}}</mat-cell>
+    </ng-container>
+
+    <!-- Partner code Column -->
+    <ng-container matColumnDef="partnercode">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Partner Code</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.partnercode}}</mat-cell>
+    </ng-container>
+    <!-- Reson code -->
+    <ng-container matColumnDef="reasoncode">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Error Code</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.reasoncode}}</mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator #paginator
+                 [pageSize]="5"
+                 [pageSizeOptions]="[5, 10, 20]"
+                 [showFirstLastButtons]="true">
+  </mat-paginator>
+</div>

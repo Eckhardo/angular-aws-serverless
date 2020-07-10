@@ -1,0 +1,23 @@
+<base href="/"> <!--  This assumes that the app folder is the application root, and uses "/" -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <span class="mdl-layout-title">{{ title }}</span>
+      <div class="mdl-layout-spacer"></div>
+      <div class="mdl-layout-spacer"></div>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">
+        <a class="mdl-navigation__link" [routerLink]="['/home']" routerLinkActive="active-link">Home</a>
+        <a class="mdl-navigation__link" [routerLink]="['/locations']" routerLinkActive="active-link">Locations </a>
+        <a class="mdl-navigation__link" [routerLink]="['/searchNewRoutes']" routerLinkActive="active-link">Ocean
+          Routes</a>
+        <a class="mdl-navigation__link" [routerLink]="['/searchIntermodal']" routerLinkActive="active-link">Intermodal
+          Key Figures</a>
+      </nav>
+    </div>
+  </header>
+  <main class="mdl-layout__content" style="padding: 20px;">
+    <!--This element informs Angular to update the application view with the component for the selected route. -->
+    <router-outlet></router-outlet>
+  </main>
+</div>
+

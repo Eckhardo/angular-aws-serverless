@@ -1,0 +1,72 @@
+
+.form-style-9 {
+  max-width: 400px;
+  background: #FAFAFA;
+  padding: 10px;
+  margin: 20px auto;
+  box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+  border-radius: 10px;
+  border: 2px solid #305A72;
+}
+
+.smallFont {
+  font: 400 12px/20px Roboto, "Helvetica Neue", sans-serif;
+}
+
+.serviceType {
+  font: 400 12px/20px Roboto, "Helvetica Neue", sans-serif;
+  margin: 5px 0px 10px 15px;
+}
+
+.floatLeft {
+  float: left;
+  padding: 1px 1px 1px 1px;
+  margin: 1px 1px 1px 1px;
+  font-weight: bold;
+  color: #13557b;
+  height: 4px;
+  line-height: 0px;
+}
+
+/* ml */
+.stopFloat {
+  display: block;
+  float: none;
+  clear: both;
+  height: 0px; /* 1px, wenn kleine Linie bleiben soll */
+  font-size: 0px;
+  line-height: 0px;
+  background: #ffffff;
+}
+
+select:hover {
+  background: rgba(0, 0, 0, 0);
+  color: #3a7999;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover {
+  visibility: visible;
+}
+
+.isHidden {
+  display: none;
+}
+
+.isShown {
+  display: inherit;
+}

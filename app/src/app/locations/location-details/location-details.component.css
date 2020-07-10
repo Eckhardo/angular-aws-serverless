@@ -1,0 +1,33 @@
+/* Structure */
+
+.form-style-9 {
+  max-width: 400px;
+  background: #FAFAFA;
+  padding: 10px;
+  margin: 20px auto;
+  box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+  border-radius: 10px;
+  border: 2px solid #305A72;
+}
+
+.example-container {
+  position: relative;
+  padding: 5px;
+}
+
+.example-loading-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mat-flat-button {
+  margin: 5px;
+}

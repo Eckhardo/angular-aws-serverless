@@ -1,0 +1,180 @@
+
+<form class="form-style-9 mdl-color-text--light-blue-900" style="background: #ecf4ff;"
+      [formGroup]="form"
+      novalidate (ngSubmit)="filterOceanRoutes()">
+  <div id="im-search-form" style="text-align: center;font-weight: bold;">
+    {{ title }}
+
+    <ng-template #noResult>
+      No results found.
+    </ng-template>
+    <div>
+
+    </div>
+
+    <mat-spinner [style.display]="showSpinner ? 'block' :'none'"></mat-spinner>
+  </div>
+
+  <!--  Rules -->
+  <div *ngIf="isCollapsed">
+    <div style="border-width: 2px; border-color: #337DA8; border-style: solid; padding:5px; margin: 5px; ">
+      <!--- Port of Loading -->
+      <mat-form-field style="width: 150px; margin-left: 20px; margin-right: 20px;">
+        <input matInput placeholder="Port of Loading" formControlName="portOfLoading" [matAutocomplete]="autoFrom">
+        <mat-hint align="start"> e.g. BRSSZ, HKHKG</mat-hint>
+        <mat-error>
+        <span
+          *ngIf="!portOfLoading.valid && portOfLoading.touched">Invalid entry !</span>
+        </mat-error>
+        <mat-autocomplete #autoFrom="matAutocomplete">
+          <mat-option *ngFor="let item of possiblePOLs" [value]="item.location_code"
+                      style="height: 30px; line-height: 20px; background-color: #ecf4ff;">
+            <span class="smallFont"> {{ item.location_code }}</span>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <!--- Port of Destination -->
+      <mat-form-field style="width: 150px;">
+        <input matInput placeholder="Port of Destination" formControlName="portOfDestination"
+               [matAutocomplete]="autoTo">
+        <mat-error>
+        <span
+          *ngIf="!portOfDestination.valid && portOfDestination.touched">Invalid entry !</span>
+        </mat-error>
+        <mat-autocomplete #autoTo="matAutocomplete">
+          <mat-option *ngFor="let item of possiblePODs" [value]="item.location_code"
+                      style="height: 30px; line-height: 20px; background-color: #ecf4ff;">
+            <span class="smallFont"> {{ item.location_code }}</span>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+    <div style="border-width: 2px; border-color: #337DA8; border-style: solid; padding:5px; margin: 5px; ">
+      <!---Vessel System 1 -->
+      <mat-form-field style="width: 120px; margin-left: 20px; margin-right: 20px;">
+        <input matInput placeholder="Vessel System 1" formControlName="vesselsystem_1" [matAutocomplete]="autoVS1">
+        <mat-hint align="start"> e.g. Brazil Express</mat-hint>
+
+        <mat-autocomplete #autoVS1="matAutocomplete">
+          <mat-option *ngFor="let item of possibleVS_1s" [value]="item.vs_name"
+                      style="height: 30px; line-height: 20px; background-color: #ecf4ff;">
+            <span class="smallFont"> {{ item.vs_name }}</span>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <!--- TS 1 -->
+      <mat-form-field style="width: 150px; margin-left: 20px; margin-right: 20px;">
+        <input matInput placeholder="T/S-Port 1" formControlName="ts_1" [matAutocomplete]="ts1">
+        <mat-autocomplete #ts1="matAutocomplete">
+          <mat-option *ngFor="let item of possibleTS_1s" [value]="item.location_code"
+                      style="height: 30px; line-height: 20px; background-color: #ecf4ff;">
+            <span class="smallFont"> {{ item.location_code }}</span>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <!---Vessel System 2 -->
+
+      <mat-form-field style="width: 120px; margin-left: 20px; margin-right: 20px;">
+        <input matInput placeholder="Vessel System 2" formControlName="vesselsystem_2" [matAutocomplete]="autoVS2">
+        <mat-autocomplete #autoVS2="matAutocomplete">
+          <mat-option *ngFor="let item of possibleVS_2s" [value]="item.vs_name"
+                      style="height: 30px; line-height: 20px; background-color: #ecf4ff;">
+            <span class="smallFont"> {{ item.vs_name }}</span>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <mat-form-field style="width: 150px; margin-left: 20px; margin-right: 20px;">
+        <input matInput placeholder="T/S-Port 2" formControlName="ts_2" [matAutocomplete]="ts2">
+        <mat-autocomplete #ts2="matAutocomplete">
+          <mat-option *ngFor="let item of possibleTS_2s" [value]="item.location_code"
+                      style="height: 30px; line-height: 20px; background-color: #ecf4ff;">
+            <span class="smallFont"> {{ item.location_code }}</span>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <!---Vessel System 3 -->
+
+      <mat-form-field style="width: 120px; margin-left: 20px; margin-right: 20px;">
+        <input matInput placeholder="Vessel System 3" formControlName="vesselsystem_3" [matAutocomplete]="autoVS3">
+        <mat-autocomplete #autoVS3="matAutocomplete">
+          <mat-option *ngFor="let item of possibleVS_3s" [value]="item.vs_name"
+                      style="height: 30px; line-height: 20px; background-color: #ecf4ff;">
+            <span class="smallFont"> {{ item.vs_name }}</span>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <mat-form-field style="width: 150px; margin-left: 20px; margin-right: 20px;">
+        <input matInput placeholder="T/S-Port 3" formControlName="ts_3" [matAutocomplete]="ts3">
+        <mat-autocomplete #ts3="matAutocomplete">
+          <mat-option *ngFor="let item of possibleTS_3s" [value]="item.location_code"
+                      style="height: 30px; line-height: 20px; background-color: #ecf4ff;">
+            <span class="smallFont"> {{ item.location_code }}</span>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+    <!--- Start and End Date -->
+    <div style="border-width: 2px; border-color: #337DA8; border-style: solid; padding:5px; margin: 5px; ">
+
+      <mat-form-field style="width: 150px; margin-left: 20px; margin-right: 20px; ">
+        <input matInput [matDatepicker]="picker1" placeholder="start date"
+               formControlName="startDate">
+        <mat-error>
+          <span *ngIf="!form.get('startDate').valid && form.get('startDate').touched">Please enter Start Date!</span>
+        </mat-error>
+
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field style="width: 150px;">
+        <input matInput [matDatepicker]="picker2" placeholder="end date"
+               formControlName="endDate" readonly>
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2 disabled="true"></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+  <!--- # tsPorts invalid included -->
+  <div style="border-width: 2px; border-color: #337DA8; border-style: solid; padding:5px; margin: 5px; ">
+    <span>Include:</span>
+    <mat-grid-list cols="7">
+      <mat-grid-tile colspan="4">
+        <div>
+          <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect " for="checkbox-invalid">
+            <input type="checkbox" id="checkbox-invalid" class="mdl-checkbox__input" formControlName="includeInvalid">
+            <span class="mat-small">Invalid Routings</span>
+          </label>
+          <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect " for="checkbox-shunting">
+            <input type="checkbox" id="checkbox-shunting" class="mdl-checkbox__input" formControlName="includeShunting">
+            <span class="mat-small">Shunting</span>
+          </label>
+        </div>
+      </mat-grid-tile>
+
+      <mat-grid-tile colspan="3">
+        <div class="mat-small" style="margin-bottom: 10px; margin-top: 11px; "># of T/S Ports:
+          <select formControlName="numberTs" class="mdl-color-text--light-blue-900"
+                  style="width: 57px; ">
+            <option class="mdl-color-text--light-blue-900" *ngFor="let e of numberTsPorts" [value]="e">{{e}}
+            </option>
+          </select>
+        </div>
+      </mat-grid-tile>
+
+    </mat-grid-list>
+  </div>
+
+  <div style="border-width: 2px; border-color: #337DA8; border-style: solid;  margin: 5px; padding: 10px; ">
+    <button type="button" mat-raised-button (click)="toggle()">{{button_name}}</button>
+    <button type="button" mat-raised-button (click)="reset()">Reset</button>
+    <button mat-raised-button type=”submit” [disabled]="isInvalid()">
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+</form>
+
+<div *ngIf="routes.length > 0; else noResult">
+  <app-nre-result [routings]="routes"></app-nre-result>
+</div>
+

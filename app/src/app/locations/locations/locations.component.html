@@ -1,0 +1,52 @@
+<div class="mdl-color-text--light-blue-900" style="background: #ecf4ff;">
+  <h2>Locations List</h2>
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-flat-button color="primary" [routerLink]="['/add-location']">
+      <mat-icon>add</mat-icon>
+      Add</a>
+  </div>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="data" class="example-table"
+           matSort matSortActive="name" matSortDisableClear matSortDirection="asc">
+      <!-- Location ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>id</th>
+        <td mat-cell *matCellDef="let row">{{row.geoscope_id}}</td>
+      </ng-container>
+      <!-- Location Country Column -->
+      <ng-container matColumnDef="country">
+        <th mat-header-cell *matHeaderCellDef style="  padding: 10px;">Country</th>
+        <td mat-cell *matCellDef="let row">{{row.country_code}}</td>
+      </ng-container>
+      <!-- Location Code Column -->
+      <ng-container matColumnDef="code">
+        <th mat-header-cell *matHeaderCellDef>Code</th>
+        <td mat-cell *matCellDef="let row">{{row.location_code}}</td>
+      </ng-container>
+
+      <!-- Location Type Column -->
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef>Type</th>
+        <td mat-cell *matCellDef="let row">{{row.geoscope_type}}</td>
+      </ng-container>
+
+      <!-- Location Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef style="  padding: 10px;">Name</th>
+        <td mat-cell *matCellDef="let row">{{row.location_name}}</td>
+      </ng-container>
+
+      <!-- Location Port Column -->
+      <ng-container matColumnDef="port">
+        <th mat-header-cell *matHeaderCellDef>Port</th>
+        <td mat-cell *matCellDef="let row">{{row.is_port}}</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/location-details/', row.location_code]"></tr>
+    </table>
+  </div>
+</div>

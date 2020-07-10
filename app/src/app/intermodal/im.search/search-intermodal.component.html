@@ -1,0 +1,226 @@
+<!-- <p>Form value: {{ form.value | json }}</p>
+<p>Form status: {{ form.status | json }}</p>
+<p>PrefPorts: {{ filteredPortGeoScopes | json }}</p>
+-->
+<form class="form-style-9 mdl-color-text--light-blue-900" style="background: #ecf4ff;"
+      [formGroup]="form"
+      novalidate (ngSubmit)="filterKeyFigures()">
+  <div id="im-search-form-title" style="text-align: center;font-weight: bold;">
+    {{ title }}
+  </div>
+  <div>
+
+    <mat-spinner [style.display]="showSpinner ? 'block' :'none'"></mat-spinner>
+  </div>
+
+  <!--  Service, Pre-OnCarriage -->
+  <div *ngIf="isCollapsed">
+    <div style="border: 2px solid #337DA8;padding:5px; margin: 5px; ">
+      <span>Include Validator for:</span>
+
+      <mat-grid-list cols="5" style="  margin: 10px;">
+        <mat-grid-tile colspan="3">
+
+          <div>
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect " for="includeKF">
+              <input type="checkbox" id="includeKF" class="mdl-checkbox__input" formControlName="includeKeyFigure">
+              <span class="mat-small">Key Figures</span>
+            </label>
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="includeTariff">
+              <input type="checkbox" id="includeTariff" class="mdl-checkbox__input" formControlName="includeImTariff">
+              <span class="mat-small">Im Tariffs</span>
+            </label>
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="includeSchedule">
+              <input type="checkbox" id="includeSchedule" class="mdl-checkbox__input"
+                     formControlName="includeImSchedule">
+              <span class="mat-small">Im Schedules</span>
+            </label>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2">
+          <div>
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="preCarriage">
+              <input type="radio" id="preCarriage" class="mdl-radio__button" formControlName="preOnCarriage"
+                     value="true">
+              <span class="mat-small">PreCarriage</span>
+            </label>
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="onCarriage">
+              <input type="radio" id="onCarriage" class="mdl-radio__button" formControlName="preOnCarriage"
+                     value="false">
+              <span class="mat-small">OnCarriage</span>
+            </label>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+
+    <div style="border-width: 2px; border-color: #337DA8; border-style: solid; padding:5px; margin: 5px; ">
+      <!--- Inland Location, Country Code, Geo Scope Type Transport Mode -->
+      <mat-form-field style="width: 150px; margin-left: 20px; margin-right: 20px;  margin-bottom: 10px;">
+        <input matInput placeholder="Inland Location" formControlName="inlandLocation" [matAutocomplete]="autoFrom">
+        <mat-hint
+          align="start">{{ form.get('inlandGeoScopeType').value === 'L' ? "e.g. DEDUS" : "e.g. DUSSELDORF"}}</mat-hint>
+        <mat-error>
+        <span
+          *ngIf="!form.get('inlandLocation').valid && form.get('inlandLocation').touched">Please enter Inland Location !</span>
+        </mat-error>
+        <mat-autocomplete #autoFrom="matAutocomplete">
+          <mat-option *ngFor="let item of filteredInlandGeoScopes"
+                      [value]=" form.get('inlandGeoScopeType').value === 'L' ? item.location_code : item.location_name"
+                      style="height: 30px; line-height: 20px; background-color: #ecf4ff;">
+            <span
+              class="smallFont"> {{ form.get('inlandGeoScopeType').value === 'L' ? item.location_code : item.location_name}}</span>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <mat-form-field style="width: 120px; margin-left: 20px; margin-right: 20px;"
+                      [ngClass]="{'isHidden': ! isCountryDisplayed()}">
+        <input id="countryCodeControl" matInput placeholder="Country Code" formControlName="countryCode"
+               [matAutocomplete]="autoCountry">
+        <mat-error>
+          <span *ngIf="!form.get('countryCode').valid && form.get('countryCode').touched">Enter e.g. DE, BR !</span>
+        </mat-error>
+        <mat-autocomplete #autoCountry="matAutocomplete">
+          <mat-option id="countryCodeOption" *ngFor="let country of filteredCountries" [value]="country.country_code"
+                      style="height: 30px; line-height: 20px;">
+            <span class="smallFont"> {{ country.country_code }}</span>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <div style="margin-bottom: 15px; margin-left: 20px; margin-right: 10px;"> Type:
+        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
+          <input type="radio" id="option-1" class="mdl-radio__button" formControlName="inlandGeoScopeType" value="L">
+          <span class="mat-small">Location</span>
+        </label>
+        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
+          <input type="radio" id="option-2" class="mdl-radio__button" formControlName="inlandGeoScopeType" value="T">
+          <span class="mat-small">City</span>
+        </label>
+        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
+          <input type="radio" id="option-3" class="mdl-radio__button" formControlName="inlandGeoScopeType" value="F">
+          <span class="mat-small">Facility</span>
+        </label>
+        <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-4">
+          <input type="radio" id="option-4" class="mdl-radio__button" formControlName="inlandGeoScopeType" value="P">
+          <span class="mat-small">Postal Code</span>
+        </label>
+      </div>
+      <div style="margin-top: 5px;  margin-left: 20px;">TP Mode:
+        <span *ngIf="transportModes.length > 0">
+        <select placeholder="transport mode" formControlName="transportMode"
+                class="mdl-color-text--light-blue-900">
+          <option *ngFor="let t of transportModes" [value]="t">{{t}}
+          </option>
+        </select>
+        </span>
+      </div>
+    </div>
+    <!--- Preferred Port: Location, GeoSocope Types -->
+    <div style="border-width: 2px; border-color: #337DA8; border-style: solid; padding:5px; margin: 5px; ">
+      <div *ngIf="allPortsSelected()">
+        <span style="margin-top: 5px;  margin-left: 20px;">Preferred Ports: </span>
+        <span *ngIf="filteredPortGeoScopes.length > 0">
+        <span class="mat-small" *ngFor="let item of filteredPortGeoScopes; let isLast =last"
+              style="margin-top: 5px;  margin-left: 20px;">
+          {{ item.location_code}} {{isLast ? '' : ', '}}
+        </span>
+        </span>
+      </div>
+      <div *ngIf="! allPortsSelected()">
+
+        <mat-form-field style="width: 150px; margin-left: 20px; margin-right: 20px;">
+          <mat-select placeholder="Preferred Ports" formControlName="prefPort">
+            <mat-option *ngFor="let port of filteredPortGeoScopes" [value]="port.location_code">
+              {{port.location_code}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div style=" padding:5px; margin: 5px;">
+        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect " for="includeAll">
+          <input type="checkbox" id="includeAll" class="mdl-checkbox__input" formControlName="includeAllPreferredPorts">
+          <span class="mat-small">Include All Preferred Ports</span>
+        </label>
+      </div>
+    </div>
+
+    <!--- Start and End Date -->
+    <div style="border-width: 2px; border-color: #337DA8; border-style: solid; padding:5px; margin: 5px; ">
+
+      <mat-form-field style="width: 150px; margin-left: 20px; margin-right: 20px; ">
+        <input matInput [matDatepicker]="picker1" placeholder="start date"
+               formControlName="startDate">
+        <mat-error>
+          <span *ngIf="!form.get('startDate').valid && form.get('startDate').touched">Please enter Start Date!</span>
+        </mat-error>
+
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field style="width: 150px;">
+        <input matInput [matDatepicker]="picker2" placeholder="end date"
+               formControlName="endDate" readonly>
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2 disabled="true"></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <!--- Equipment -->
+    <div style="border-width: 2px; border-color: #337DA8; border-style: solid; padding:5px; margin: 5px; ">
+      <mat-error>
+        <span *ngIf="! eqSizeSelected()">Please enter an EQ Size!</span>
+      </mat-error>
+      <mat-grid-list cols="7">
+        <mat-grid-tile colspan="3">
+          <span class="mat-small" style="margin-left: 15px; margin-right: 10px;">EQ Size:</span>
+          <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect " for="checkbox-1">
+            <input type="checkbox" id="checkbox-1" class="mdl-checkbox__input" formControlName="eq20">
+            <span class="mat-small">20'</span>
+          </label>
+          <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="checkbox-2">
+            <input type="checkbox" id="checkbox-2" class="mdl-checkbox__input" formControlName="eq40">
+            <span class="mat-small">40'</span>
+          </label>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="4">
+          <div class="mat-small" style="margin-bottom: 10px; margin-top: 11px; "> EQ Group:
+            <select formControlName="equipmentType" class="mdl-color-text--light-blue-900"
+                    style="width: 100px; ">
+              <option class="mdl-color-text--light-blue-900" *ngFor="let e of equipmentTypes" [value]="e">{{e}}
+              </option>
+            </select>
+          </div>
+        </mat-grid-tile>
+
+      </mat-grid-list>
+    </div>
+
+    <!--- Weight Class -->
+    <div style="border-width: 2px; border-color: #337DA8; border-style: solid;  margin: 5px; ">
+      <mat-form-field style="width: 150px; margin-left: 20px; margin-right: 20px; ">
+        <input matInput placeholder="Gross Weight 20' (Tons)"
+               formControlName="weight20">
+      </mat-form-field>
+      <mat-form-field style="width: 150px; margin-left: 20px;">
+        <input matInput placeholder="Gross Weight 40' (Tons)"
+               formControlName="weight40">
+      </mat-form-field>
+      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" style="margin-left: 20px;"
+             for="weigh-based-only">
+        <input type="checkbox" id="weigh-based-only" class="mdl-checkbox__input" formControlName="weightBasedOnly">
+        <span class="mat-small">Weight Based Only</span>
+      </label>
+    </div>
+  </div>
+
+  <div style="border-width: 2px; border-color: #337DA8; border-style: solid;  margin: 5px; padding: 10px; ">
+    <button type="button" mat-raised-button (click)="toggle()">{{button_name}}</button>
+    <button type="button" mat-raised-button (click)="reset()">Reset</button>
+    <button mat-raised-button type=”submit” [disabled]="isInvalid()">
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+</form>
+<div *ngIf="keyFigures.length > 0">
+  <app-result-intermodal [keyFigures]="keyFigures"></app-result-intermodal>
+</div>

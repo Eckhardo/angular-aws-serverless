@@ -1,0 +1,33 @@
+<div *ngIf="action != 'Delete'; else elseTemplate" class="form-style-9 mdl-color-text--light-blue-900" style="background: #ecf4ff;">
+<mat-dialog-content [formGroup]="dialogForm" >
+  <mat-form-field>
+    <input matInput
+           placeholder="ID"
+           formControlName="id" disabled readonly>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput
+           placeholder="Geoscope Code"
+           formControlName="code">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput
+           placeholder="Geoscope Type"
+           formControlName="type">
+  </mat-form-field> <mat-form-field>
+  <input matInput
+         placeholder="Country Code"
+         formControlName="country">
+</mat-form-field>
+
+</mat-dialog-content>
+
+</div>
+<ng-template #elseTemplate class="form-style-9 mdl-color-text--light-blue-900" style="background: #ecf4ff;">
+  Sure to delete <b>{{local_data.locationCode}}</b>?
+</ng-template>
+<mat-dialog-actions class="form-style-9 mdl-color-text--light-blue-900" style="background: #ecf4ff;">
+  <button class="mat-raised-button"(click)="closeDialog()">Close</button>
+  <button class="mat-raised-button"(click)="doAction()">{{action}}</button>
+</mat-dialog-actions>

@@ -1,0 +1,64 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+
+  <mat-table #table [dataSource]="dataSource" matSort matSort matSortDirection="asc">
+
+    <!-- Inland Column -->
+    <ng-container matColumnDef="inland">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Inland</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.from}}</mat-cell>
+    </ng-container>
+
+    <!-- Via Column -->
+    <ng-container matColumnDef="via">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Via</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.via}}</mat-cell>
+    </ng-container>
+
+    <!-- Port Column -->
+    <ng-container matColumnDef="port">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Port</mat-header-cell>
+      <mat-cell *matCellDef="let element "> {{element.to}}</mat-cell>
+    </ng-container>
+    <!-- Transport Mode Column -->
+    <ng-container matColumnDef="transportmode">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>TransportMode</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.transportMode ? element.transportMode :""}}</mat-cell>
+    </ng-container>
+
+    <!-- Rate Column -->
+    <ng-container matColumnDef="rate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Rate</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.rate }} {{ element.currency }}</mat-cell>
+    </ng-container>
+
+    <!-- EQSize Column -->
+    <ng-container matColumnDef="eqsize">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>EQSize</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.equipmentSize}}</mat-cell>
+    </ng-container>
+
+    <!-- EQType -->
+    <ng-container matColumnDef="eqgroup">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>EQGroup</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.equipmentGroup}}</mat-cell>
+    </ng-container>
+    <!-- IsPrferred Column -->
+    <ng-container matColumnDef="preferred">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Preferred</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.isPreferred}}</mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator #paginator
+                 [pageSize]="5"
+                 [pageSizeOptions]="[5, 10, 20]"
+                 [showFirstLastButtons]="true">
+  </mat-paginator>
+</div>

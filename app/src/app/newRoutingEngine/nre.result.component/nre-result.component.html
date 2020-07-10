@@ -1,0 +1,75 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+
+  <mat-table #table [dataSource]="dataSource" matSort matSort matSortDirection="asc">
+    <!--     displayedColumns = ['TT (days)', 'pol', 'pod', 'ts1', 'ts2', 'ts3', 'prof-1', 'prof-2', 'prof-3', 'errorcode'];
+
+    <!-- Transit time Column -->
+    <ng-container matColumnDef="tt">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>TT (days)</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.tt}}</mat-cell>
+    </ng-container>
+
+    <!-- POL Column -->
+    <ng-container matColumnDef="pol">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>POL</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.pol}}</mat-cell>
+    </ng-container>
+
+
+    <!-- ts1 Column -->
+    <ng-container matColumnDef="ts1">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>T/S 1</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.ts1}}</mat-cell>
+    </ng-container>
+    <!-- ts2 Column -->
+    <ng-container matColumnDef="ts2">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>T/S 2</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.ts2}}</mat-cell>
+    </ng-container>
+    <!-- ts3 Column -->
+    <ng-container matColumnDef="ts3">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>T/S 3</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.ts3}}</mat-cell>
+    </ng-container>
+    <!-- POD Column -->
+    <ng-container matColumnDef="pod">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>POD</mat-header-cell>
+      <mat-cell *matCellDef="let element "> {{element.pod}}</mat-cell>
+    </ng-container>
+    <!-- Proforma 1 -->
+    <ng-container matColumnDef="prof-1">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Proforma 1</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.prof1 }}</mat-cell>
+    </ng-container>
+
+    <!-- Proforma 2 -->
+    <ng-container matColumnDef="prof-2">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Proforma 2</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.prof2}}</mat-cell>
+    </ng-container>
+
+    <!-- Proforma 3 -->
+    <ng-container matColumnDef="prof-3">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Proforma 3</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.prof3}}</mat-cell>
+    </ng-container>
+    <!-- Reson code -->
+    <ng-container matColumnDef="errorcode">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Error Code</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.errors}}</mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-paginator #paginator
+                 [pageSize]="10"
+                 [pageSizeOptions]="[5, 10, 20]"
+                 [showFirstLastButtons]="true">
+  </mat-paginator>
+</div>

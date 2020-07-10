@@ -1,0 +1,32 @@
+.example-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.example-header {
+  min-height: 64px;
+  padding: 8px 24px 0;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-header-cell.mat-sort-header-sorted {
+  color: black;
+}
+
+mat-row:nth-child(even) {
+  background-color: #ecf4ff;;
+}
+
+mat-row:nth-child(odd) {
+  background-color: #ecf4dd;;
+}
