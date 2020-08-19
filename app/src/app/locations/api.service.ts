@@ -17,7 +17,7 @@ const httpOptionsResponse = {
 
 const main_headers = {};
 //const apiUrl = 'http://localhost:3000/prod';
- const apiUrl = 'https://ihklqdkyme.execute-api.eu-central-1.amazonaws.com/dev';
+
 const slash = '/';
 const object_type = EntityEnum.GEOSCOPE;
 
