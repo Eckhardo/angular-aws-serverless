@@ -16,7 +16,8 @@ const httpOptionsResponse = {
 };
 
 const main_headers = {};
-//const apiUrl = 'http://localhost:3000/prod';
+
+const apiUrl = 'http://localhost:3000/prod';
 
 const slash = '/';
 const object_type = EntityEnum.GEOSCOPE;

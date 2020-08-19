@@ -8,7 +8,8 @@ import {GeoScopeModel} from '../model/geoscope.model';
 
 const object_type = EntityEnum.COUNTRY;
 const slash = '/';
-// const serverApi = 'http://localhost:3000/prod';
+
+ const serverApi = 'http://localhost:3000/prod';
 
 @Injectable()
 export class CountryService {
