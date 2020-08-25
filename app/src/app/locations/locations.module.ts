@@ -1,5 +1,4 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
 
 import {LOCATION_COMPONENTS, LocationsRoutingModule} from './locations-routing.module';
 import {SharedModule} from '../shared/shared.module';

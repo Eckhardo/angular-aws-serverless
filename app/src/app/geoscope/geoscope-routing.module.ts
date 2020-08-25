@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { GeoscopeListComponent} from './list/list-component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {GeoscopeListComponent} from './list/list-component';
 import {DialogBoxComponent} from './dialog-box/dialog-box.component';
 
 

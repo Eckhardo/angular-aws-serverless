@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { GeoscopeListComponent } from './list-component';
+import {GeoscopeListComponent} from './list-component';
 
 describe('Geoscope.List.ComponentComponent', () => {
   let component: GeoscopeListComponent;

@@ -1,5 +1,4 @@
-
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AppRoutingModule, ROOT_COMPONENTS} from './app-routing.module';
 

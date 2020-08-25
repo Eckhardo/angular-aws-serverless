@@ -1,4 +1,12 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 
 import {KeyFigureModel} from '../models/keyfigure.model';
 import {MatSort} from '@angular/material/sort';

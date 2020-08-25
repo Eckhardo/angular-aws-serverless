@@ -1,10 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Observable, throwError, of} from 'rxjs';
+import {Observable, of, throwError} from 'rxjs';
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from '@angular/common/http';
 import {EntityEnum} from '../enums/app-enum';
 import {CountryModel} from '../model/country.model';
 import {catchError} from 'rxjs/operators';
-import {GeoScopeModel} from '../model/geoscope.model';
 
 const object_type = EntityEnum.COUNTRY;
 const slash = '/';

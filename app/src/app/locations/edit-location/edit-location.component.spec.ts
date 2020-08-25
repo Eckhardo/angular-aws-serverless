@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { EditLocationComponent } from './edit-location.component';
+import {EditLocationComponent} from './edit-location.component';
 
 describe('EditLocationComponent', () => {
   let component: EditLocationComponent;
