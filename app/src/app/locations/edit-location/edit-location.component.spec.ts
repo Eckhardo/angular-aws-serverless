@@ -8,9 +8,9 @@ describe('EditLocationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditLocationComponent ]
+      declarations: [EditLocationComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

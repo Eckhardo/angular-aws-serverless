@@ -8,9 +8,9 @@ describe('Geoscope.List.ComponentComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GeoscopeListComponent]
+      declarations: [GeoscopeListComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -17,4 +17,5 @@ import {DialogBoxComponent} from './dialog-box/dialog-box.component';
     DialogBoxComponent
   ]
 })
-export class GeoscopeModule { }
+export class GeoscopeModule {
+}

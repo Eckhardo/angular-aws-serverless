@@ -11,30 +11,33 @@ const routes: Routes = [
   {
     path: 'locations',
     component: LocationsComponent,
-    data: { title: 'List of Locations' }
+    data: {title: 'List of Locations'}
   },
   {
     path: 'location-details/:location_code',
     component: LocationDetailsComponent,
-    data: { title: 'Location Details' }
+    data: {title: 'Location Details'}
   },
   {
     path: 'add-location',
     component: AddLocationComponent,
-    data: { title: 'Add Location' }
+    data: {title: 'Add Location'}
   },
   {
     path: 'edit-location/:location_code',
     component: EditLocationComponent,
-    data: { title: 'Edit Location' }
+    data: {title: 'Edit Location'}
   },
-  { path: '',
+  {
+    path: '',
     redirectTo: '/locations',
     pathMatch: 'full'
   }
 ];
+
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class LocationsRoutingModule { }
+export class LocationsRoutingModule {
+}

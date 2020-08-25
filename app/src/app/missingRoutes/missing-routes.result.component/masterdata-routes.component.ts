@@ -19,8 +19,8 @@ export class MissingRoutesResultComponent implements OnInit, AfterViewInit, OnCh
   displayedColumns = ['trade', 'pol', 'pod', 'ts1', 'ts2', 'ts3', 'contractno', 'productno', 'partnercode', 'reasoncode'];
   dataSource: any;
 
-  @ViewChild(MatSort, { static: true } as any) sort: MatSort;
-  @ViewChild(MatPaginator, { static: true } as any) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true} as any) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true} as any) paginator: MatPaginator;
 
 
   applyFilter(filterValue: string) {

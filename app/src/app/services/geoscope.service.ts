@@ -12,7 +12,7 @@ import {ContractModel} from '../model/contract.model';
 const object_type = EntityEnum.GEOSCOPE;
 const slash = '/';
 
- const serverApi = 'http://localhost:3000/prod';
+const serverApi = 'http://localhost:3000/prod';
 
 /**
  * Created by ekirschning on 28.03.2017.

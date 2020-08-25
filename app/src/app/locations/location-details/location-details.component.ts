@@ -10,18 +10,21 @@ import {GeoScopeModel} from '../../model/geoscope.model';
 })
 export class LocationDetailsComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private api: ApiService, private router: Router) { }
+  constructor(private route: ActivatedRoute, private api: ApiService, private router: Router) {
+  }
 
   location: GeoScopeModel = new GeoScopeModel('', '', '', '');
   isLoadingResults = true;
+
   ngOnInit(): void {
     this.getLocationDetails(this.route.snapshot.params.location_code);
   }
+
   getLocationDetails(code: string) {
     this.api.getLocationByCode(code)
       .subscribe((data: any) => {
         this.location = data;
-         this.isLoadingResults = false;
+        this.isLoadingResults = false;
       });
   }
 

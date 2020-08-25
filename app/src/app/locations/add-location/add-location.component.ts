@@ -14,6 +14,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
   }
 }
+
 @Component({
   selector: 'app-add-location',
   templateUrl: './add-location.component.html',
@@ -44,7 +45,7 @@ export class AddLocationComponent implements OnInit {
     this.isLoadingResults = true;
     this.api.addLocation(this.locationForm.value)
       .subscribe((res: any) => {
-         this.isLoadingResults = false;
+        this.isLoadingResults = false;
         this.router.navigate(['/location-details', this.locationForm.get('location_code').value]);
       }, (err: any) => {
         console.log(err);

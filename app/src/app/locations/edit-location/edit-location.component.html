@@ -56,7 +56,8 @@
         <input matInput placeholder="Port" formControlName="is_port"
                [errorStateMatcher]="matcher">
         <mat-error>
-          <span *ngIf="!locationForm.get('is_port').valid && locationForm.get('is_port').touched">Please enter Port</span>
+          <span
+            *ngIf="!locationForm.get('is_port').valid && locationForm.get('is_port').touched">Please enter Port</span>
         </mat-error>
       </mat-form-field>
 

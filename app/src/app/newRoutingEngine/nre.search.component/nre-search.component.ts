@@ -478,7 +478,7 @@ export class NewRoutingEngineComponent implements OnInit, OnChanges {
   }
 
   private setEndDate(date: Date) {
-    const newDay: number = ( date.getDate() + 14);
+    const newDay: number = (date.getDate() + 14);
     const newDate: Date = new Date();
     newDate.setDate(newDay);
 

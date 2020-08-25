@@ -1,10 +1,24 @@
- export const keyfigures =
+export const keyfigures =
 
   [{
     'id': 49,
-    'from': {'id': 9, 'countryCode': 'DE', 'locationCode': 'DEDUS', 'geoScopeType': 'L', 'locationName': '', 'port': false},
+    'from': {
+      'id': 9,
+      'countryCode': 'DE',
+      'locationCode': 'DEDUS',
+      'geoScopeType': 'L',
+      'locationName': '',
+      'port': false
+    },
     'via': null,
-    'to': {'id': 1, 'countryCode': 'DE', 'locationCode': 'DEBRV', 'geoScopeType': 'L', 'locationName': 'Bremerhaven', 'port': true},
+    'to': {
+      'id': 1,
+      'countryCode': 'DE',
+      'locationCode': 'DEBRV',
+      'geoScopeType': 'L',
+      'locationName': 'Bremerhaven',
+      'port': true
+    },
     'imRouteKey': 0,
     'transportMode': 'TRUCK',
     'equipmentSize': '40',
@@ -17,9 +31,23 @@
     'preferred': false
   }, {
     'id': 50,
-    'from': {'id': 9, 'countryCode': 'DE', 'locationCode': 'DEDUS', 'geoScopeType': 'L', 'locationName': '', 'port': false},
+    'from': {
+      'id': 9,
+      'countryCode': 'DE',
+      'locationCode': 'DEDUS',
+      'geoScopeType': 'L',
+      'locationName': '',
+      'port': false
+    },
     'via': null,
-    'to': {'id': 2, 'countryCode': 'DE', 'locationCode': 'DEHAM', 'geoScopeType': 'L', 'locationName': 'Hamburg', 'port': true},
+    'to': {
+      'id': 2,
+      'countryCode': 'DE',
+      'locationCode': 'DEHAM',
+      'geoScopeType': 'L',
+      'locationName': 'Hamburg',
+      'port': true
+    },
     'imRouteKey': 0,
     'transportMode': 'TRUCK',
     'equipmentSize': '40',
@@ -32,9 +60,23 @@
     'preferred': false
   }, {
     'id': 51,
-    'from': {'id': 9, 'countryCode': 'DE', 'locationCode': 'DEDUS', 'geoScopeType': 'L', 'locationName': '', 'port': false},
+    'from': {
+      'id': 9,
+      'countryCode': 'DE',
+      'locationCode': 'DEDUS',
+      'geoScopeType': 'L',
+      'locationName': '',
+      'port': false
+    },
     'via': null,
-    'to': {'id': 3, 'countryCode': 'NL', 'locationCode': 'NLRTM', 'geoScopeType': 'L', 'locationName': 'Rotterdam', 'port': true},
+    'to': {
+      'id': 3,
+      'countryCode': 'NL',
+      'locationCode': 'NLRTM',
+      'geoScopeType': 'L',
+      'locationName': 'Rotterdam',
+      'port': true
+    },
     'imRouteKey': 0,
     'transportMode': 'TRUCK',
     'equipmentSize': '40',
@@ -47,9 +89,23 @@
     'preferred': false
   }, {
     'id': 52,
-    'from': {'id': 9, 'countryCode': 'DE', 'locationCode': 'DEDUS', 'geoScopeType': 'L', 'locationName': '', 'port': false},
+    'from': {
+      'id': 9,
+      'countryCode': 'DE',
+      'locationCode': 'DEDUS',
+      'geoScopeType': 'L',
+      'locationName': '',
+      'port': false
+    },
     'via': null,
-    'to': {'id': 4, 'countryCode': 'BE', 'locationCode': 'BEANR', 'geoScopeType': 'L', 'locationName': 'Antwerp', 'port': true},
+    'to': {
+      'id': 4,
+      'countryCode': 'BE',
+      'locationCode': 'BEANR',
+      'geoScopeType': 'L',
+      'locationName': 'Antwerp',
+      'port': true
+    },
     'imRouteKey': 0,
     'transportMode': 'TRUCK',
     'equipmentSize': '40',

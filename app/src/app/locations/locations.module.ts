@@ -12,4 +12,5 @@ import {SharedModule} from '../shared/shared.module';
   ],
   providers: []
 })
-export class LocationsModule { }
+export class LocationsModule {
+}

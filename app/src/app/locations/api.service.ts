@@ -65,7 +65,7 @@ export class ApiService {
 
 
   updateLocation(code: string, geoscope: GeoScopeModel): Observable<any> {
-     return this.http.put<GeoScopeModel>(this.getUrl(), geoscope, httpOptions).pipe(
+    return this.http.put<GeoScopeModel>(this.getUrl(), geoscope, httpOptions).pipe(
       tap(_ => console.log(`updated GeoScopeModel id=${code}`)),
       catchError(this.handleError<any>('updateLocation'))
     );

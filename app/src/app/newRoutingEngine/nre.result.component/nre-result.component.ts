@@ -18,8 +18,8 @@ export class NewRoutingeEngineResultComponent implements OnInit, AfterViewInit, 
   displayedColumns = ['tt', 'pol', 'ts1', 'ts2', 'ts3', 'pod', 'prof-1', 'prof-2', 'prof-3', 'errorcode'];
   dataSource: any;
 
-  @ViewChild(MatSort, { static: true } as any) sort: MatSort;
-  @ViewChild(MatPaginator, { static: true } as any) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true} as any) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true} as any) paginator: MatPaginator;
 
 
   applyFilter(filterValue: string) {

@@ -28,8 +28,8 @@ export class ResultIntermodalComponent implements OnChanges, AfterViewInit {
   displayedColumns = ['inland', 'via', 'port', 'transportmode', 'rate', 'eqsize', 'eqgroup', 'preferred'];
   dataSource: any;
 
-  @ViewChild(MatSort, { static: true } as any) sort: MatSort;
-  @ViewChild(MatPaginator, { static: true } as any) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: true} as any) sort: MatSort;
+  @ViewChild(MatPaginator, {static: true} as any) paginator: MatPaginator;
 
 
   applyFilter(filterValue: string) {
